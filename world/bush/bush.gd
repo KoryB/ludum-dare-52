@@ -4,6 +4,9 @@ class_name Bush extends Area2D
 var BerryScene: PackedScene = preload("res://world/bush/berry/berry.tscn")
 
 
+signal berry_created(berry)
+
+
 export var initial_radius := 64.0
 export var berry_spawn_time := 1.0
 export var berry_area_ratio := 0.25
@@ -59,3 +62,5 @@ func spawn_berry():
     berry.position = Math.random_vector_polar(0, self.radius)
     
     add_child(berry)
+    
+    emit_signal("berry_created", berry)

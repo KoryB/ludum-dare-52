@@ -10,3 +10,7 @@ static func random_vector_polar(min_radius: float, max_radius: float):
     var dir = random_unit_vector()
     
     return dir * rand_range(min_radius, max_radius)
+
+
+static func Vector2f(value: float):
+    return Vector2(value, value)

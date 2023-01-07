@@ -26,6 +26,11 @@ func _physics_process(_delta: float):
             
         for body in sweetspot_bodies:
             try_hit_body(body, true)
+            
+        var berries = $Anchor/BerryHarvestArea.get_overlapping_areas()
+        
+        for berry in berries:
+            berry.harvest()
 
 
 func attack():
@@ -43,6 +48,7 @@ func try_hit_body(body, is_sweetspot):
         if is_sweetspot:
             print("Sweetspot!")
             
+        body.on_hit()
         body.apply_impulse(get_attack_power(is_sweetspot) * get_hit_direction(body))
         processed_bodies.append(body)
     

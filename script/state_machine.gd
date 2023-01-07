@@ -35,6 +35,8 @@ func post_update(target, delta: float):
     
 
 func enter_state(target, new_state: State):
+    assert(new_state != null, "Trying to enter a null state, check your return values!")
+
     if new_state != state:
         if state != null:
             state.on_leave(target)

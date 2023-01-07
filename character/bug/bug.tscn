@@ -9,6 +9,9 @@ extents = Vector2( 32, 32 )
 [node name="Bug" instance=ExtResource( 1 )]
 collision_layer = 2
 script = ExtResource( 2 )
+target_switch_time = 1.0
+move_speed = 150.0
+stun_time = 1.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )

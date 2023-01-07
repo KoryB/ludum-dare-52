@@ -33,7 +33,6 @@ var current_state = State.Idle
 
 var dash_timer := 0.0
 
-var state_machine := StateMachine.new()
 var idle_state := PlayerIdleState.new()
 var dashing_state := PlayerDashingState.new()
 
@@ -53,10 +52,7 @@ func _ready():
 # So we just define `do_physics_process` to only call once
 func do_physics_process(delta: float):
     handle_input()
-    state_machine.pre_update(self, delta)
-    state_machine.update(self, delta)
-    update_physics(delta)
-    state_machine.post_update(self, delta)
+    .do_physics_process(delta)
     
     
 func handle_input():
