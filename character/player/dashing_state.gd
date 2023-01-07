@@ -9,7 +9,13 @@ func set_dependencies(idle_state: State):
     
 func on_enter(target):
     target.dash_timer = 0.0
+    target.set_scythe_impulse_multiplier(2.0)
+     # TODO: Do we want to dash based on target current base_velocity?
     target.target_velocity = target.dash_speed * target.get_local_mouse_position().normalized()
+    
+
+func on_leave(target):
+    target.set_scythe_impulse_multiplier(1.0)
 
 
 func pre_update(target, delta: float) -> State:

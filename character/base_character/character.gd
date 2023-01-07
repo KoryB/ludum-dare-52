@@ -4,6 +4,8 @@ export var inv_mass := 0.1
 export var linear_dampening := 0.85
 export var acceleration_factor := 0.7
 
+var is_dead = false
+
 var forces := Vector2(0, 0)
 var base_velocity := Vector2(0, 0)
 var force_velocity := Vector2(0, 0)
@@ -17,6 +19,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
+    do_physics_process(delta)
+    if is_dead:
+        on_die()
+    
+
+func do_physics_process(delta: float):
     update_physics(delta)
     
     
@@ -48,3 +56,11 @@ func apply_force(force: Vector2):
 
 func apply_impulse(impulse: Vector2):
     force_velocity += impulse * inv_mass
+    
+
+func kill():
+    is_dead = true
+    
+
+func on_die():
+    pass

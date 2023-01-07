@@ -6,6 +6,8 @@ export var dash_distance := 200.0
 export var dash_time := 0.3
 
 onready var dash_speed := dash_distance / dash_time
+onready var scythe_distance: float = $ScythePosition.position.length()
+onready var initial_scythe_position = $ScythePosition.position
 
 enum State {
     Idle,
@@ -43,13 +45,17 @@ func _ready():
     state_machine.add_state(idle_state)
     state_machine.add_state(dashing_state)
     
-    state_machine.set_initial_state(idle_state)
+    state_machine.set_state(idle_state)
 
 
-func _physics_process(delta: float):
+# Recall, _physics_process gets call on this object twice. 
+# Once for the definition in Character, once for here
+# So we just define `do_physics_process` to only call once
+func do_physics_process(delta: float):
     handle_input()
     state_machine.pre_update(self, delta)
     state_machine.update(self, delta)
+    update_physics(delta)
     state_machine.post_update(self, delta)
     
     
@@ -64,10 +70,21 @@ func handle_input():
     is_attack = Input.is_action_just_pressed("player_attack")        
     is_shield = Input.is_action_pressed("player_shield")
     
+
+func can_dash() -> bool:
+    return true
     
-func do_update(delta: float):
-    update_physics(delta)
+    
+func set_scythe_impulse_multiplier(multiplier: float):
+    $ScythePosition/Scythe1.impulse_multiplier = multiplier
     
 
-func can_dash():
-    return true
+func set_scythe_position(pos: Vector2):
+    $ScythePosition.position = pos
+    $ScythePosition.rotation = initial_scythe_position.angle_to(pos)
+    
+func can_attack() -> bool:
+    return $ScythePosition/Scythe1.can_attack()
+    
+func attack():
+    $ScythePosition/Scythe1.attack()
