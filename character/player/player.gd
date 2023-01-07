@@ -1,8 +1,8 @@
 class_name Player extends Character
 
 
-export var move_speed := 150.0
-export var dash_distance := 200.0
+export var move_speed := 300.0
+export var dash_distance := 300.0
 export var dash_time := 0.3
 
 onready var dash_speed := dash_distance / dash_time
@@ -87,4 +87,7 @@ func can_attack() -> bool:
     return $ScythePosition/Scythe1.can_attack()
     
 func attack():
+    set_scythe_position(
+        scythe_distance * 
+        get_local_mouse_position().normalized())
     $ScythePosition/Scythe1.attack()

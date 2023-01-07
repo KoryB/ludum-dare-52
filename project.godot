@@ -14,15 +14,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://world/arena/arena.gd"
 }, {
+"base": "Area2D",
+"class": "Berry",
+"language": "GDScript",
+"path": "res://world/bush/berry/berry.gd"
+}, {
 "base": "Character",
 "class": "Bug",
 "language": "GDScript",
 "path": "res://character/bug/bug.gd"
 }, {
+"base": "Area2D",
+"class": "Bush",
+"language": "GDScript",
+"path": "res://world/bush/bush.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
 "path": "res://character/base_character/character.gd"
+}, {
+"base": "Reference",
+"class": "Math",
+"language": "GDScript",
+"path": "res://script/math.gd"
 }, {
 "base": "Character",
 "class": "Player",
@@ -51,8 +66,11 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Arena": "",
+"Berry": "",
 "Bug": "",
+"Bush": "",
 "Character": "",
+"Math": "",
 "Player": "",
 "PlayerDashingState": "",
 "PlayerIdleState": "",
@@ -65,6 +83,10 @@ _global_script_class_icons={
 config/name="LD52 - Harvest"
 run/main_scene="res://level/test_level.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=800
 
 [gui]
 

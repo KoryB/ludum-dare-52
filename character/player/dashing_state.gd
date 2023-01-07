@@ -18,10 +18,17 @@ func on_leave(target):
     target.set_scythe_impulse_multiplier(1.0)
 
 
-func pre_update(target, delta: float) -> State:
-    target.dash_timer += delta
+func pre_update(target, _delta: float) -> State:
+    if target.is_attack and target.can_attack():
+        target.attack()
     
     return self
+    
+    
+func update(target, delta: float) -> State:
+    target.dash_timer += delta
+    
+    return self    
 
 
 func post_update(target, _delta: float) -> State:
