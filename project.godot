@@ -18,10 +18,34 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://character/player/player.gd"
+}, {
+"base": "State",
+"class": "PlayerDashingState",
+"language": "GDScript",
+"path": "res://character/player/dashing_state.gd"
+}, {
+"base": "State",
+"class": "PlayerIdleState",
+"language": "GDScript",
+"path": "res://character/player/idle_state.gd"
+}, {
+"base": "Reference",
+"class": "State",
+"language": "GDScript",
+"path": "res://script/state.gd"
+}, {
+"base": "Reference",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://script/state_machine.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
-"Player": ""
+"Player": "",
+"PlayerDashingState": "",
+"PlayerIdleState": "",
+"State": "",
+"StateMachine": ""
 }
 
 [application]
