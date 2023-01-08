@@ -36,11 +36,7 @@ smoothing_speed = 10.0
 [node name="Bug" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.678431, 0.0627451, 0.0627451, 1 )
 position = Vector2( 769, 562 )
-target_switch_time = 1.0
-stun_time = 1.0
 
 [node name="Bug2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.686275, 1, 0, 1 )
 position = Vector2( 767, 258 )
-target_switch_time = 1.0
-stun_time = 1.0

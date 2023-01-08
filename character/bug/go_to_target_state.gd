@@ -9,7 +9,7 @@ func on_enter(target):
 
 
 func pre_update(target, delta: float) -> State:
-    if target.target == null or !target.target.is_inside_tree(): # TODO: This did not do the stale references like I expected
+    if !is_instance_valid(target.target):
         target.choose_new_target()
         
     target_switch_timer += delta
