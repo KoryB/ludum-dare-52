@@ -11,6 +11,7 @@ var base_velocity := Vector2(0, 0)
 var force_velocity := Vector2(0, 0)
 
 var target_velocity := Vector2(0, 0)
+var facing_direction := Vector2.UP
 
 var state_machine := StateMachine.new()
 

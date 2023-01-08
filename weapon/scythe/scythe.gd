@@ -59,3 +59,7 @@ func get_hit_direction(body) -> Vector2:
 
 func get_attack_power(is_sweetspot: bool) -> float:
     return impulse_power * impulse_multiplier * (sweetspot_multiplier if is_sweetspot else 1.0)
+    
+    
+func is_attacking() -> bool:
+    return $Anchor/AnimationPlayer.is_playing()

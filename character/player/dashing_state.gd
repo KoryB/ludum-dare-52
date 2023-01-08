@@ -12,6 +12,7 @@ func on_enter(target):
     target.set_scythe_impulse_multiplier(2.0)
      # TODO: Do we want to dash based on target current base_velocity?
     target.target_velocity = target.dash_speed * target.get_local_mouse_position().normalized()
+    target.set_facing_direction(target.target_velocity.normalized())
     
 
 func on_leave(target):

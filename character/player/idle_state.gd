@@ -26,7 +26,9 @@ func pre_update(target, _delta: float) -> State:
     elif dir.is_equal_approx(Vector2(0, 0)):
         target.target_velocity = Vector2(0, 0)
     else:
-        target.target_velocity = target.move_speed * dir.normalized()
+        dir = dir.normalized()
+        target.set_facing_direction(dir)
+        target.target_velocity = target.move_speed * dir
     
     if target.is_attack and target.can_attack():
         target.attack()

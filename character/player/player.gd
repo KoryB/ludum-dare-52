@@ -1,6 +1,12 @@
 class_name Player extends Character
 
 
+const FrameDown := 0
+const FrameUp := 1
+const FrameLeft := 2
+const FrameRight := 3
+
+
 export var move_speed := 300.0
 export var dash_distance := 300.0
 export var dash_time := 0.3
@@ -53,6 +59,7 @@ func _ready():
 func do_physics_process(delta: float):
     handle_input()
     .do_physics_process(delta)
+    set_frame()
     
     
 func handle_input():
@@ -79,11 +86,33 @@ func set_scythe_position(pos: Vector2):
     $ScythePosition.position = pos
     $ScythePosition.rotation = initial_scythe_position.angle_to(pos)
     
+    
 func can_attack() -> bool:
     return $ScythePosition/Scythe1.can_attack()
     
+    
 func attack():
-    set_scythe_position(
-        scythe_distance * 
-        get_local_mouse_position().normalized())
+    var to_mouse = get_local_mouse_position().normalized()
+    
+    set_facing_direction(to_mouse)
+    set_scythe_position(scythe_distance * to_mouse)
     $ScythePosition/Scythe1.attack()
+    
+    
+func set_facing_direction(dir: Vector2):
+    if not $ScythePosition/Scythe1.is_attacking():
+        facing_direction = dir
+        
+        
+func set_frame():
+    var angle = facing_direction.angle()
+    var frame = FrameLeft
+    
+    if angle <= (PI / 4) and angle >= (-PI / 4):
+        frame = FrameRight
+    elif angle <= 3.1 * PI / 4 and angle >= PI / 4:
+        frame = FrameUp
+    elif angle >= -3.1 * PI / 4 and angle <= -PI / 4:
+        frame = FrameDown
+
+    $AnimatedSprite.frame = frame
