@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://weapon/scythe/scythe.gd" type="Script" id=1]
+[ext_resource path="res://asset/scythe.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 9.96698, 32 )
@@ -130,6 +131,12 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor/BerryHarvestArea"]
 position = Vector2( 76.5, -36 )
 shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="Anchor"]
+position = Vector2( 100, -63 )
+rotation = 1.5708
+texture = ExtResource( 2 )
+centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Anchor"]
 root_node = NodePath("../..")
