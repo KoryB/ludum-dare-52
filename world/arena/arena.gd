@@ -1,17 +1,17 @@
 class_name Arena extends Area2D
 
 
+signal bug_killed(bug)
+
+export var radius := 800.0
 var is_first_frame := true
 
 
-func _physics_process(delta: float):
-    # I'm guessing the collision system hasn't had a chance to calculate overlaps on the first frame
-    if is_first_frame:
-        is_first_frame = false
-        return
+func _physics_process(_delta: float):
+    if not PauseManager.is_paused:
+        var bugs = get_tree().get_nodes_in_group("Bug")
         
-    var characters = get_tree().get_nodes_in_group("Character")
-    
-    for character in characters:
-        if not overlaps_body(character):
-            character.kill()
+        for bug in bugs:
+            if bug.life > 0 and not overlaps_body(bug):
+                bug.kill()
+                emit_signal("bug_killed", bug)

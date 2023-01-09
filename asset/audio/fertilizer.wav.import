@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fertilizer.wav-17742d820f720886acf9846535e68c59.sample"
+
+[deps]
+
+source_file="res://asset/audio/fertilizer.wav"
+dest_files=[ "res://.import/fertilizer.wav-17742d820f720886acf9846535e68c59.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

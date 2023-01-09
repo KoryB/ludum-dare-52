@@ -4,7 +4,7 @@ class_name BugGoToTargetState extends State
 var target_switch_timer := 0.0
 
 
-func on_enter(target):
+func on_enter(_target):
     target_switch_timer = 0.0
 
 
@@ -17,9 +17,15 @@ func pre_update(target, delta: float) -> State:
     return self
 
 
-func update(target, _delta: float) -> State:
-    var dir = (target.target.global_position - target.global_position).normalized()
-    target.target_velocity = target.move_speed * dir
+func update(target, delta: float) -> State:
+    if is_overlapping_target(target):
+        var berry = target.get_node("Area2D").get_overlapping_areas()[0]
+        
+        berry.damage(target, target.berry_eat_damage * delta)
+        target.target_velocity = Vector2.ZERO
+    else:
+        var dir = (target.target.global_position - target.global_position).normalized()
+        target.target_velocity = target.move_speed * dir
     
     if target_switch_timer >= target.target_switch_time:
         if target.target is Player:
@@ -27,3 +33,7 @@ func update(target, _delta: float) -> State:
     
     return self
 
+func is_overlapping_target(target):
+    var berries = target.get_node("Area2D").get_overlapping_areas()
+    
+    return not berries.empty()

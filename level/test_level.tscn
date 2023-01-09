@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://character/player/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://character/bug/bug.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/default_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://world/arena/arena.tscn" type="PackedScene" id=3]
 [ext_resource path="res://world/bush/bush.tscn" type="PackedScene" id=4]
 [ext_resource path="res://level/game_manager.gd" type="Script" id=5]
+[ext_resource path="res://asset/audio/few-short.wav" type="AudioStream" id=6]
+[ext_resource path="res://asset/audio/fertilizer.wav" type="AudioStream" id=7]
+[ext_resource path="res://asset/audio/all-hat.wav" type="AudioStream" id=8]
+[ext_resource path="res://asset/audio/cut-up.wav" type="AudioStream" id=9]
+[ext_resource path="res://asset/audio/tarnation.wav" type="AudioStream" id=10]
+[ext_resource path="res://asset/audio/noise0.wav" type="AudioStream" id=11]
+[ext_resource path="res://asset/audio/noise1.wav" type="AudioStream" id=12]
+[ext_resource path="res://asset/audio/noise2.wav" type="AudioStream" id=13]
+[ext_resource path="res://asset/audio/pickupCoin.wav" type="AudioStream" id=14]
+[ext_resource path="res://asset/audio/bug_hit.wav" type="AudioStream" id=15]
+[ext_resource path="res://asset/audio/song.ogg" type="AudioStream" id=16]
+[ext_resource path="res://ui/upgrade_manager.tscn" type="PackedScene" id=17]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -12,6 +24,68 @@
 script = ExtResource( 5 )
 bush_path = NodePath("../Bush")
 arena_path = NodePath("../Arena")
+player_path = NodePath("../Player")
+
+[node name="HUD" type="CanvasLayer" parent="GameManager"]
+
+[node name="BerryLabel" type="Label" parent="GameManager/HUD"]
+margin_left = 1.0
+margin_top = 571.0
+margin_right = 204.0
+margin_bottom = 600.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+uppercase = true
+
+[node name="HealthLabel" type="Label" parent="GameManager/HUD"]
+margin_left = 683.0
+margin_top = 8.0
+margin_right = 791.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 2 )
+text = "100/100"
+
+[node name="AudioPlayersOnKill" type="Node" parent="GameManager"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnKill"]
+stream = ExtResource( 8 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnKill"]
+stream = ExtResource( 9 )
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnKill"]
+stream = ExtResource( 7 )
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnKill"]
+stream = ExtResource( 6 )
+
+[node name="AudioPlayersOnHit" type="Node" parent="GameManager"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnHit"]
+stream = ExtResource( 11 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnHit"]
+stream = ExtResource( 10 )
+
+[node name="AudioPlayersOnAttack" type="Node" parent="GameManager"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnAttack"]
+stream = ExtResource( 12 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GameManager/AudioPlayersOnAttack"]
+stream = ExtResource( 13 )
+
+[node name="BerryPickupAudio" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource( 14 )
+
+[node name="BugHitAudio" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource( 15 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource( 16 )
+volume_db = -8.739
+
+[node name="UpgradeManager" parent="." instance=ExtResource( 17 )]
 
 [node name="Arena" parent="." instance=ExtResource( 3 )]
 
@@ -19,7 +93,7 @@ arena_path = NodePath("../Arena")
 position = Vector2( 800, 800 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 587, 596 )
+position = Vector2( 895, 681 )
 move_speed = 300.0
 dash_distance = 300.0
 
@@ -30,13 +104,4 @@ limit_top = 0
 limit_right = 1600
 limit_bottom = 1600
 limit_smoothed = true
-smoothing_enabled = true
 smoothing_speed = 10.0
-
-[node name="Bug" parent="." instance=ExtResource( 2 )]
-modulate = Color( 0.678431, 0.0627451, 0.0627451, 1 )
-position = Vector2( 769, 562 )
-
-[node name="Bug2" parent="." instance=ExtResource( 2 )]
-modulate = Color( 0.686275, 1, 0, 1 )
-position = Vector2( 767, 258 )

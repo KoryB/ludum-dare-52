@@ -1,9 +1,12 @@
 class_name Bug extends Character
 
+signal hit
 
 export var target_switch_time := 1.0
 export var move_speed := 150.0
 export var stun_time := 1.0 # TODO: Move this to the scythe, based on impulse?
+export var damage := 5
+export var berry_eat_damage := 3.0
 
 var target: Node2D
 
@@ -24,6 +27,7 @@ func _ready():
 
 func on_hit():
     state_machine.enter_state(self, stun_state)
+    emit_signal("hit")
 
 
 func on_die():

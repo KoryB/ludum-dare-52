@@ -42,6 +42,9 @@ func attack():
 func can_attack():
     return is_interruptable or !$Anchor/AnimationPlayer.is_playing()
     
+func can_attack_held():
+    return !$Anchor/AnimationPlayer.is_playing()
+    
 
 func try_hit_body(body, is_sweetspot):
     if not processed_bodies.has(body):

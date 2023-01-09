@@ -30,7 +30,7 @@ func pre_update(target, _delta: float) -> State:
         target.set_facing_direction(dir)
         target.target_velocity = target.move_speed * dir
     
-    if target.is_attack and target.can_attack():
+    if target.is_attack:
         target.attack()
         
     return self

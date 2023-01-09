@@ -13,6 +13,8 @@ var force_velocity := Vector2(0, 0)
 var target_velocity := Vector2(0, 0)
 var facing_direction := Vector2.UP
 
+var life := 0.0
+
 var state_machine := StateMachine.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -22,9 +24,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-    do_physics_process(delta)
-    if is_dead:
-        on_die()
+    if not PauseManager.is_paused:
+        do_physics_process(delta)
+        if is_dead:
+            on_die()
     
 
 func do_physics_process(delta: float):
@@ -32,6 +35,14 @@ func do_physics_process(delta: float):
     state_machine.update(self, delta)
     update_physics(delta)
     state_machine.post_update(self, delta)
+    
+    life += delta
+    
+    do_other_process(delta)
+    
+
+func do_other_process(delta: float):
+    pass
     
     
 func update_physics(delta: float):

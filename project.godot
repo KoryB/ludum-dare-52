@@ -102,6 +102,11 @@ config/name="LD52 - Harvest"
 run/main_scene="res://level/test_level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PauseManager="*res://level/pause_manager.tscn"
+UpgradeManager="*res://ui/upgrade_manager.tscn"
+
 [display]
 
 window/size/width=800
@@ -167,4 +172,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.23, 0.153333, 0.138, 1 )
 environment/default_environment="res://default_env.tres"
